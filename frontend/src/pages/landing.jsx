@@ -14,7 +14,8 @@ export default function LandingPage() {
                 </div>
                 <div className='navlist'>
                     <p onClick={() => {
-                        router("/aljk23")
+                        const randomCode = Math.random().toString(36).substring(2, 8);
+                        router(`/${randomCode}`)
                     }}>Join as Guest</p>
                     <p onClick={() => {
                         router("/auth")
