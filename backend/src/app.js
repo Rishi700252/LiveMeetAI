@@ -29,7 +29,7 @@ app.use("/api/v1/meetings", meetingRoutes);
 
 
 const start = async () =>{
-    const mongoURI = process.env.MONGO_URI || "mongodb+srv://kumarrishi7469_db_user:f5IWbErx4tpNtiik@cluster0.qws1lvx.mongodb.net/?appName=Cluster0";
+    const mongoURI = process.env.MONGO_URI;
     const connectionDb = await mongoose.connect(mongoURI);
     console.log(`Mongo Connected DB Host:${connectionDb.connection.host}`)
     server.listen(app.get("port"),() =>{
