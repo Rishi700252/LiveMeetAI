@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.landingPageContainer {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    color: #0f172a;
+    overflow: hidden;
+}
+
+/* Glowing orbs for background effect */
+.landingPageContainer::before, .landingPageContainer::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: float 10s infinite alternate ease-in-out;
+}
+.landingPageContainer::before {
+    background: rgba(255, 152, 57, 0.2);
+    top: -100px;
+    left: -100px;
+}
+.landingPageContainer::after {
+    background: rgba(99, 102, 241, 0.2);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 30px); }
+}
+
+.landingPageContainer nav {
+    position: relative;
+    z-index: 10;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.landingPageContainer nav h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0;
+    background: linear-gradient(to right, #2563eb, #db2777, #2563eb);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.landingPageContainer nav .navlist {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.landingPageContainer nav .navlist p {
+    cursor: pointer;
+    font-weight: 500;
+    color: #475569;
+    transition: color 0.3s ease;
+    margin: 0;
+}
+
+.landingPageContainer nav .navlist p:hover {
+    color: #000000;
+}
+
+.landingPageContainer nav .navlist div[role='button'] {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.03);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.landingPageContainer nav .navlist div[role='button']:hover {
+    background: rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.landingMainContainer {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 4rem;
+    height: calc(100vh - 80px);
+    align-items: center;
+}
+
+.landingMainContainer > div:nth-child(1) {
+    max-width: 600px;
+}
+
+.landingMainContainer > div:nth-child(1) h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #0f172a;
+}
+
+.landingMainContainer > div:nth-child(1) h1 span {
+    background: linear-gradient(to right, #FF9839, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 152, 57, 0.15);
+}
+
+.landingMainContainer > div:nth-child(1) > p {
+    font-size: 1.3rem;
+    color: #475569;
+    margin-bottom: 3rem;
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button'] {
+    width: fit-content;
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button'] a {
+    display: inline-block;
+    background: linear-gradient(45deg, #FF9839, #ec4899);
+    background-size: 200% auto;
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(255, 152, 57, 0.4);
+    transition: all 0.3s ease;
+    animation: pulseGlow 2s infinite, shineBtn 3s linear infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(236, 72, 153, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+}
+
+@keyframes shineBtn {
+    to { background-position: 200% center; }
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button'] a:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 152, 57, 0.6);
+}
+
+.landingMainContainer img {
+    width: 500px;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    animation: floatImg 6s infinite alternate ease-in-out;
+}
+
+@keyframes floatImg {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+}
