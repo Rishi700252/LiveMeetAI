@@ -29,9 +29,13 @@ app.use("/api/v1/meetings", meetingRoutes);
 
 
 const start = async () =>{
-    const mongoURI = process.env.MONGO_URI;
-    const connectionDb = await mongoose.connect(mongoURI);
-    console.log(`Mongo Connected DB Host:${connectionDb.connection.host}`)
+    try {
+        const mongoURI = process.env.MONGO_URI;
+        const connectionDb = await mongoose.connect(mongoURI);
+        console.log(`Mongo Connected DB Host:${connectionDb.connection.host}`)
+    } catch (error) {
+        console.error("MongoDB Connection Error:", error);
+    }
     server.listen(app.get("port"),() =>{
         console.log(`listening on port ${app.get("port")}`);
     });
