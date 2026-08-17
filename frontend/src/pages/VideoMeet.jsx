@@ -62,6 +62,7 @@ export default function VideoMeetComponent() {
         useState(true);
 
     const [username, setUsername] = useState("");
+    const [nameError, setNameError] = useState("");
 
     const [videos, setVideos] = useState([]);
 
@@ -851,6 +852,16 @@ export default function VideoMeetComponent() {
 
     const getMedia = () => {
 
+        if (username.includes("http://") || username.includes("https://")) {
+            setNameError("Please enter a valid name, not a URL.");
+            return;
+        }
+        if (username.length > 40) {
+            setNameError("Name is too long (max 40 characters).");
+            return;
+        }
+        setNameError("");
+
         setVideo(videoAvailable);
 
         setAudio(audioAvailable);
@@ -1068,7 +1079,12 @@ export default function VideoMeetComponent() {
                             value={username}
                             variant="outlined"
                             fullWidth
-                            onChange={e => setUsername(e.target.value)}
+                            onChange={e => {
+                                setUsername(e.target.value);
+                                setNameError("");
+                            }}
+                            error={!!nameError}
+                            helperText={nameError}
                             sx={{
                                 marginBottom: '1.5rem',
                                 '& .MuiOutlinedInput-root': {
