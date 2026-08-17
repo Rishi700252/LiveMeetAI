@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
+import { Snackbar } from "@mui/material";
 
 import { io } from "socket.io-client";
 
@@ -67,6 +68,8 @@ export default function VideoMeetComponent() {
     const [videos, setVideos] = useState([]);
 
     const [showModal, setModal] = useState(false);
+    const [showSnackbar, setShowSnackbar] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
 
     let routeTo =useNavigate();
 
@@ -572,6 +575,12 @@ export default function VideoMeetComponent() {
                 socketRef.current.on(
                     "user-left",
                     (id) => {
+
+                        const leftUser = videoRef.current.find(v => v.socketId === id);
+                        if (leftUser) {
+                            setSnackbarMessage(`${leftUser.username || "Guest"} left the meeting`);
+                            setShowSnackbar(true);
+                        }
 
                         setVideos(
                             videos =>
@@ -1375,6 +1384,12 @@ export default function VideoMeetComponent() {
 
             )}
 
+            <Snackbar
+                open={showSnackbar}
+                autoHideDuration={3000}
+                onClose={() => setShowSnackbar(false)}
+                message={snackbarMessage}
+            />
         </div>
 
     );
