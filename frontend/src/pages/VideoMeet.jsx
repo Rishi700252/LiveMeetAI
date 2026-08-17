@@ -241,6 +241,9 @@ export default function VideoMeetComponent() {
         } catch(e) {
             console.log(e);
         }
+        if (socketRef.current) {
+            socketRef.current.disconnect();
+        }
         const roomId = window.location.pathname.split("/").pop();
         routeTo(`/${roomId}/summary`);
     }
